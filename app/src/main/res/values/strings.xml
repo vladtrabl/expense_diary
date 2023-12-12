@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Inventory</string>
-    <string name="sell">Sell</string>
+    <string name="app_name">Expense diary</string>
     <string name="description">Details:</string>
     <string name="description_req">Details <font color='#FF0000'>*</font></string>
     <string name="item_name_req">Name <font color='#FF0000'>*</font></string>

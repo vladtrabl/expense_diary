@@ -10,8 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.expense.data.Item
 import com.example.expense.data.getFormattedPrice
-import com.example.inventory.R
-import com.example.inventory.databinding.FragmentItemDetailBinding
+import com.example.expense.databinding.FragmentItemDetailBinding
+import com.example.expense.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class ItemDetailFragment : Fragment() {
