@@ -23,7 +23,7 @@
         android:id="@+id/itemListFragment"
         android:name="com.example.expense.ItemListFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/item_list_fragment">
+        tools:layout="@layout/expense_list_fragment">
         <action
             android:id="@+id/action_itemListFragment_to_itemDetailFragment"
             app:destination="@id/itemDetailFragment" />
@@ -35,7 +35,7 @@
         android:id="@+id/itemDetailFragment"
         android:name="com.example.expense.ItemDetailFragment"
         android:label="@string/item_detail_fragment_title"
-        tools:layout="@layout/fragment_item_detail">
+        tools:layout="@layout/expense_item_detail">
         <argument
             android:name="item_id"
             app:argType="integer" />

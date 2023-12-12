@@ -9,7 +9,7 @@
     tools:context=".ItemDetailFragment">
 
     <TextView
-        android:id="@+id/item_name"
+        android:id="@+id/expense_name"
         style="@style/Widget.ExpenseDiary.TextView"
         android:layout_width="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,37 +17,37 @@
         tools:text="Coffee" />
 
     <TextView
-        android:id="@+id/item_sum"
+        android:id="@+id/expense_sum"
         style="@style/Widget.ExpenseDiary.TextView"
         android:layout_width="wrap_content"
         android:layout_marginTop="@dimen/margin"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_name"
+        app:layout_constraintTop_toBottomOf="@+id/expense_name"
         tools:text="$1.99" />
 
     <TextView
-        android:id="@+id/item_description_label"
+        android:id="@+id/expense_description_label"
         style="@style/Widget.ExpenseDiary.TextView"
         android:layout_width="wrap_content"
         android:text="@string/description"
-        app:layout_constraintBaseline_toBaselineOf="@+id/item_description"
-        app:layout_constraintEnd_toStartOf="@+id/item_description"
+        app:layout_constraintBaseline_toBaselineOf="@+id/expense_description"
+        app:layout_constraintEnd_toStartOf="@+id/expense_description"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/item_description"
+        android:id="@+id/expense_description"
         style="@style/Widget.ExpenseDiary.TextView"
         android:layout_width="0dp"
         android:layout_marginStart="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/item_description_label"
-        app:layout_constraintTop_toBottomOf="@+id/item_sum"
+        app:layout_constraintStart_toEndOf="@+id/expense_description_label"
+        app:layout_constraintTop_toBottomOf="@+id/expense_sum"
         tools:text="Morning routine" />
 
     <Button
-        android:id="@+id/delete_item"
+        android:id="@+id/delete_expense"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -56,10 +56,10 @@
         android:textColor="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_description" />
+        app:layout_constraintTop_toBottomOf="@+id/expense_description" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/edit_item"
+        android:id="@+id/edit_expense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_small"

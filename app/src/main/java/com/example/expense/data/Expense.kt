@@ -6,15 +6,15 @@ import androidx.room.PrimaryKey
 import java.text.NumberFormat
 
 @Entity
-data class Item(
+data class Expense(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     @ColumnInfo(name = "name")
-    val itemName: String,
+    val Name: String,
     @ColumnInfo(name = "sum")
-    val itemSum: Double,
+    val Sum: Double,
     @ColumnInfo(name = "description")
-    val itemDescription: String,
+    val Description: String,
 )
-fun Item.getFormattedPrice(): String =
-    NumberFormat.getCurrencyInstance().format(itemSum)
+fun Expense.getFormattedPrice(): String =
+    NumberFormat.getCurrencyInstance().format(Sum)

@@ -10,29 +10,29 @@
     tools:context=".ItemListFragment">
 
     <TextView
-        android:id="@+id/item_name"
+        android:id="@+id/expense_name"
         style="@style/Widget.ExpenseDiary.Header"
         android:layout_marginStart="@dimen/margin_small"
         android:text="@string/item"
-        app:layout_constraintEnd_toStartOf="@+id/item_sum"
+        app:layout_constraintEnd_toStartOf="@+id/expense_sum"
         app:layout_constraintHorizontal_weight="2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/item_sum"
+        android:id="@+id/expense_sum"
         style="@style/Widget.ExpenseDiary.Header"
-        android:layout_below="@+id/item_name"
+        android:layout_below="@+id/expense_name"
         android:layout_marginStart="@dimen/margin_small"
         android:text="@string/sum"
         android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/item_details"
+        app:layout_constraintEnd_toStartOf="@+id/expense_details"
         app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@+id/item_name"
+        app:layout_constraintStart_toEndOf="@+id/expense_name"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/item_details"
+        android:id="@+id/expense_details"
         style="@style/Widget.ExpenseDiary.Header"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/margin_small"
@@ -40,7 +40,7 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@+id/item_sum"
+        app:layout_constraintStart_toEndOf="@+id/expense_sum"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
@@ -50,7 +50,7 @@
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_details" />
+        app:layout_constraintTop_toBottomOf="@+id/expense_details" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

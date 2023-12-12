@@ -11,20 +11,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.expense.data.Item
+import com.example.expense.data.Expense
 import com.example.expense.databinding.FragmentAddItemBinding
 
 class AddItemFragment : Fragment() {
 
     private val viewModel: ExpenseDiaryViewModel by activityViewModels {
-        InventoryViewModelFactory(
+        ExpenseViewModelFactory(
             (activity?.application as ExpenseDiaryApplication).database
-                .itemDao()
+                .expenseDao()
         )
     }
     private val navigationArgs: ItemDetailFragmentArgs by navArgs()
 
-    lateinit var item: Item
+    lateinit var expense: Expense
 
     private var _binding: FragmentAddItemBinding? = null
     private val binding get() = _binding!!
@@ -40,18 +40,18 @@ class AddItemFragment : Fragment() {
 
     private fun isEntryValid(): Boolean {
         return viewModel.isEntryValid(
-            binding.itemName.text.toString(),
-            binding.itemSum.text.toString(),
-            binding.itemDescription.text.toString(),
+            binding.expenseName.text.toString(),
+            binding.expenseSum.text.toString(),
+            binding.expenseDescription.text.toString(),
         )
     }
 
-    private fun bind(item: Item) {
-        val sum = "%.2f".format(item.itemSum)
+    private fun bind(expense: Expense) {
+        val sum = "%.2f".format(expense.itemSum)
         binding.apply {
-            itemName.setText(item.itemName, TextView.BufferType.SPANNABLE)
-            itemSum.setText(sum, TextView.BufferType.SPANNABLE)
-            itemDescription.setText(item.itemDescription, TextView.BufferType.SPANNABLE)
+            expenseName.setText(expense.itemName, TextView.BufferType.SPANNABLE)
+            expenseSum.setText(sum, TextView.BufferType.SPANNABLE)
+            expenseDescription.setText(expense.itemDescription, TextView.BufferType.SPANNABLE)
             saveAction.setOnClickListener { updateItem() }
         }
     }
@@ -59,9 +59,9 @@ class AddItemFragment : Fragment() {
     private fun addNewItem() {
         if (isEntryValid()) {
             viewModel.addNewItem(
-                binding.itemName.text.toString(),
-                binding.itemSum.text.toString(),
-                binding.itemDescription.text.toString(),
+                binding.expenseName.text.toString(),
+                binding.expenseSum.text.toString(),
+                binding.expenseDescription.text.toString(),
             )
             val action = AddItemFragmentDirections.actionAddItemFragmentToItemListFragment()
             findNavController().navigate(action)
@@ -72,9 +72,9 @@ class AddItemFragment : Fragment() {
         if (isEntryValid()) {
             viewModel.updateItem(
                 this.navigationArgs.itemId,
-                this.binding.itemName.text.toString(),
-                this.binding.itemSum.text.toString(),
-                this.binding.itemDescription.text.toString()
+                this.binding.expenseName.text.toString(),
+                this.binding.expenseSum.text.toString(),
+                this.binding.expenseDescription.text.toString()
             )
             val action = AddItemFragmentDirections.actionAddItemFragmentToItemListFragment()
             findNavController().navigate(action)
@@ -87,8 +87,8 @@ class AddItemFragment : Fragment() {
         val id = navigationArgs.itemId
         if (id > 0) {
             viewModel.retrieveItem(id).observe(this.viewLifecycleOwner) { selectedItem ->
-                item = selectedItem
-                bind(item)
+                expense = selectedItem
+                bind(expense)
             }
         } else {
             binding.saveAction.setOnClickListener {

@@ -8,19 +8,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.expense.data.Item
+import com.example.expense.data.Expense
 import com.example.expense.data.getFormattedPrice
 import com.example.expense.databinding.FragmentItemDetailBinding
-import com.example.expense.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class ItemDetailFragment : Fragment() {
     private val navigationArgs: ItemDetailFragmentArgs by navArgs()
-    lateinit var item: Item
+    lateinit var expense: Expense
 
     private val viewModel: ExpenseDiaryViewModel by activityViewModels {
-        InventoryViewModelFactory(
-            (activity?.application as ExpenseDiaryApplication).database.itemDao()
+        ExpenseViewModelFactory(
+            (activity?.application as ExpenseDiaryApplication).database.expenseDao()
         )
     }
 
@@ -36,11 +35,11 @@ class ItemDetailFragment : Fragment() {
         return binding.root
     }
 
-    private fun bind(item: Item) {
+    private fun bind(expense: Expense) {
         binding.apply {
-            itemName.text = item.itemName
-            itemSum.text = item.getFormattedPrice()
-            itemDescription.text = item.itemDescription
+            itemName.text = expense.itemName
+            itemSum.text = expense.getFormattedPrice()
+            itemDescription.text = expense.itemDescription
             deleteItem.setOnClickListener { showConfirmationDialog() }
             editItem.setOnClickListener { editItem() }
         }
@@ -49,7 +48,7 @@ class ItemDetailFragment : Fragment() {
     private fun editItem() {
         val action = ItemDetailFragmentDirections.actionItemDetailFragmentToAddItemFragment(
             getString(R.string.edit_fragment_title),
-            item.id
+            expense.id
         )
         this.findNavController().navigate(action)
     }
@@ -67,7 +66,7 @@ class ItemDetailFragment : Fragment() {
     }
 
     private fun deleteItem() {
-        viewModel.deleteItem(item)
+        viewModel.deleteItem(expense)
         findNavController().navigateUp()
     }
 
@@ -75,8 +74,8 @@ class ItemDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val id = navigationArgs.itemId
         viewModel.retrieveItem(id).observe(this.viewLifecycleOwner) { selectedItem ->
-            item = selectedItem
-            bind(item)
+            expense = selectedItem
+            bind(expense)
         }
     }
 

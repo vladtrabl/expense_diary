@@ -5,13 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.expense.data.Item
-import com.example.expense.data.ItemDao
+import com.example.expense.data.Expense
+import com.example.expense.data.ExpenseDao
 import kotlinx.coroutines.launch
 
-class ExpenseDiaryViewModel(private val itemDao: ItemDao) : ViewModel() {
+class ExpenseDiaryViewModel(private val expenseDao: ExpenseDao) : ViewModel() {
 
-    val allItems: LiveData<List<Item>> = itemDao.getItems().asLiveData()
+    val allItems: LiveData<List<Expense>> = expenseDao.getItems().asLiveData()
 
     fun updateItem(
         itemId: Int,
@@ -23,9 +23,9 @@ class ExpenseDiaryViewModel(private val itemDao: ItemDao) : ViewModel() {
         updateItem(updatedItem)
     }
 
-    private fun updateItem(item: Item) {
+    private fun updateItem(expense: Expense) {
         viewModelScope.launch {
-            itemDao.update(item)
+            expenseDao.update(expense)
         }
     }
 
@@ -34,57 +34,57 @@ class ExpenseDiaryViewModel(private val itemDao: ItemDao) : ViewModel() {
         insertItem(newItem)
     }
 
-    private fun insertItem(item: Item) {
+    private fun insertItem(expense: Expense) {
         viewModelScope.launch {
-            itemDao.insert(item)
+            expenseDao.insert(expense)
         }
     }
 
-    fun deleteItem(item: Item) {
+    fun deleteItem(expense: Expense) {
         viewModelScope.launch {
-            itemDao.delete(item)
+            expenseDao.delete(expense)
         }
     }
 
-    fun retrieveItem(id: Int): LiveData<Item> {
-        return itemDao.getItem(id).asLiveData()
+    fun retrieveItem(id: Int): LiveData<Expense> {
+        return expenseDao.getExpense(id).asLiveData()
     }
 
-    fun isEntryValid(itemName: String, itemPrice: String, itemCount: String): Boolean {
-        if (itemName.isBlank() || itemPrice.isBlank() || itemCount.isBlank()) {
+    fun isEntryValid(expenseName: String, expensePrice: String, expenseCount: String): Boolean {
+        if (expenseName.isBlank() || expensePrice.isBlank() || expenseCount.isBlank()) {
             return false
         }
         return true
     }
 
-    private fun getNewItemEntry(itemName: String, itemPrice: String, itemCount: String): Item {
-        return Item(
-            itemName = itemName,
-            itemSum = itemPrice.toDouble(),
-            itemDescription = itemCount
+    private fun getNewItemEntry(expenseName: String, expensePrice: String, expenseCount: String): Expense {
+        return Expense(
+            Name = expenseName,
+            Sum = expensePrice.toDouble(),
+            Description = expenseCount
         )
     }
 
     private fun getUpdatedItemEntry(
-        itemId: Int,
-        itemName: String,
-        itemPrice: String,
-        itemCount: String
-    ): Item {
-        return Item(
-            id = itemId,
-            itemName = itemName,
-            itemSum = itemPrice.toDouble(),
-            itemDescription = itemCount
+        expenseId: Int,
+        expenseName: String,
+        expensePrice: String,
+        expenseCount: String
+    ): Expense {
+        return Expense(
+            id = expenseId,
+            Name = expenseName,
+            Sum = expensePrice.toDouble(),
+            Description = expenseCount
         )
     }
 }
 
-class InventoryViewModelFactory(private val itemDao: ItemDao) : ViewModelProvider.Factory {
+class ExpenseViewModelFactory(private val expenseDao: ExpenseDao) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ExpenseDiaryViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return ExpenseDiaryViewModel(itemDao) as T
+            return ExpenseDiaryViewModel(expenseDao) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

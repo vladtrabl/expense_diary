@@ -1,8 +1,8 @@
 package com.example.expense
 
 import android.app.Application
-import com.example.expense.data.ItemRoomDatabase
+import com.example.expense.data.ExpenseRoomDatabase
 
 class ExpenseDiaryApplication : Application() {
-    val database: ItemRoomDatabase by lazy { ItemRoomDatabase.getDatabase(this) }
+    val database: ExpenseRoomDatabase by lazy { ExpenseRoomDatabase.getDatabase(this) }
 }
