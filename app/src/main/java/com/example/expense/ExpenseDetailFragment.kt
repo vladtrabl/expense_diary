@@ -10,11 +10,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.expense.data.Expense
 import com.example.expense.data.getFormattedPrice
-import com.example.expense.databinding.FragmentItemDetailBinding
+import com.example.expense.databinding.ExpenseItemDetailBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class ItemDetailFragment : Fragment() {
-    private val navigationArgs: ItemDetailFragmentArgs by navArgs()
+class ExpenseDetailFragment : Fragment() {
+    private val navigationArgs: ExpenseDetailFragmentArgs by navArgs()
     lateinit var expense: Expense
 
     private val viewModel: ExpenseDiaryViewModel by activityViewModels {
@@ -23,7 +23,7 @@ class ItemDetailFragment : Fragment() {
         )
     }
 
-    private var _binding: FragmentItemDetailBinding? = null
+    private var _binding: ExpenseItemDetailBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -31,22 +31,22 @@ class ItemDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentItemDetailBinding.inflate(inflater, container, false)
+        _binding = ExpenseItemDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     private fun bind(expense: Expense) {
         binding.apply {
-            itemName.text = expense.itemName
-            itemSum.text = expense.getFormattedPrice()
-            itemDescription.text = expense.itemDescription
-            deleteItem.setOnClickListener { showConfirmationDialog() }
-            editItem.setOnClickListener { editItem() }
+            expenseName.text = expense.name
+            expenseSum.text = expense.getFormattedPrice()
+            expenseDescription.text = expense.description
+            deleteExpense.setOnClickListener { showConfirmationDialog() }
+            editExpense.setOnClickListener { editItem() }
         }
     }
 
     private fun editItem() {
-        val action = ItemDetailFragmentDirections.actionItemDetailFragmentToAddItemFragment(
+        val action = ExpenseDetailFragmentDirections.actionItemDetailFragmentToAddItemFragment(
             getString(R.string.edit_fragment_title),
             expense.id
         )

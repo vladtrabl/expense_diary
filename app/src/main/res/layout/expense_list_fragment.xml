@@ -6,14 +6,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:clipToOutline="false"
     android:layout_margin="@dimen/margin"
-    tools:context=".ItemListFragment">
+    tools:context=".ExpenseListFragment">
 
     <TextView
         android:id="@+id/expense_name"
         style="@style/Widget.ExpenseDiary.Header"
         android:layout_marginStart="@dimen/margin_small"
         android:text="@string/item"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/expense_sum"
         app:layout_constraintHorizontal_weight="2"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,23 +29,13 @@
         android:layout_below="@+id/expense_name"
         android:layout_marginStart="@dimen/margin_small"
         android:text="@string/sum"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/expense_details"
+        android:textStyle="bold"
+        android:textColor="@color/green"
+        android:textAlignment="textEnd"
         app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toEndOf="@+id/expense_name"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/expense_details"
-        style="@style/Widget.ExpenseDiary.Header"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/margin_small"
-        android:text="@string/description_title"
-        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="1"
-        app:layout_constraintStart_toEndOf="@+id/expense_sum"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <View
         android:id="@+id/divider"
@@ -50,13 +44,14 @@
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expense_details" />
+        app:layout_constraintTop_toBottomOf="@+id/expense_sum" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
+        tools:listitem="@layout/expense_list_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider" />

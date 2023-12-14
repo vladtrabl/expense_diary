@@ -14,7 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.expense.data.Expense
 import com.example.expense.databinding.FragmentAddItemBinding
 
-class AddItemFragment : Fragment() {
+class AddExpenseFragment : Fragment() {
 
     private val viewModel: ExpenseDiaryViewModel by activityViewModels {
         ExpenseViewModelFactory(
@@ -22,7 +22,7 @@ class AddItemFragment : Fragment() {
                 .expenseDao()
         )
     }
-    private val navigationArgs: ItemDetailFragmentArgs by navArgs()
+    private val navigationArgs: ExpenseDetailFragmentArgs by navArgs()
 
     lateinit var expense: Expense
 
@@ -47,11 +47,11 @@ class AddItemFragment : Fragment() {
     }
 
     private fun bind(expense: Expense) {
-        val sum = "%.2f".format(expense.itemSum)
+        val sum = "%.2f".format(expense.sum)
         binding.apply {
-            expenseName.setText(expense.itemName, TextView.BufferType.SPANNABLE)
+            expenseName.setText(expense.name, TextView.BufferType.SPANNABLE)
             expenseSum.setText(sum, TextView.BufferType.SPANNABLE)
-            expenseDescription.setText(expense.itemDescription, TextView.BufferType.SPANNABLE)
+            expenseDescription.setText(expense.description, TextView.BufferType.SPANNABLE)
             saveAction.setOnClickListener { updateItem() }
         }
     }
@@ -63,7 +63,7 @@ class AddItemFragment : Fragment() {
                 binding.expenseSum.text.toString(),
                 binding.expenseDescription.text.toString(),
             )
-            val action = AddItemFragmentDirections.actionAddItemFragmentToItemListFragment()
+            val action = AddExpenseFragmentDirections.actionAddItemFragmentToItemListFragment()
             findNavController().navigate(action)
         }
     }
@@ -76,7 +76,7 @@ class AddItemFragment : Fragment() {
                 this.binding.expenseSum.text.toString(),
                 this.binding.expenseDescription.text.toString()
             )
-            val action = AddItemFragmentDirections.actionAddItemFragmentToItemListFragment()
+            val action = AddExpenseFragmentDirections.actionAddItemFragmentToItemListFragment()
             findNavController().navigate(action)
         }
     }

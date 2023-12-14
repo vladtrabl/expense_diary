@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expense.data.Expense
 import com.example.expense.data.getFormattedPrice
-import com.example.expense.databinding.ItemListItemBinding
+import com.example.expense.databinding.ExpenseListItemBinding
 
-class ItemListAdapter(private val onItemClicked: (Expense) -> Unit) :
-    ListAdapter<Expense, ItemListAdapter.ItemViewHolder>(DiffCallback) {
+class ExpenseListAdapter(private val onItemClicked: (Expense) -> Unit) :
+    ListAdapter<Expense, ExpenseListAdapter.ExpenseViewHolder>(DiffCallback) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        return ItemViewHolder(
-            ItemListItemBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
+        return ExpenseViewHolder(
+            ExpenseListItemBinding.inflate(
                 LayoutInflater.from(
                     parent.context
                 )
@@ -22,7 +22,7 @@ class ItemListAdapter(private val onItemClicked: (Expense) -> Unit) :
         )
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
         val current = getItem(position)
         holder.itemView.setOnClickListener {
             onItemClicked(current)
@@ -30,13 +30,13 @@ class ItemListAdapter(private val onItemClicked: (Expense) -> Unit) :
         holder.bind(current)
     }
 
-    class ItemViewHolder(private var binding: ItemListItemBinding) :
+    class ExpenseViewHolder(private var binding: ExpenseListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(expense: Expense) {
-            binding.itemName.text = expense.itemName
-            binding.itemSum.text = expense.getFormattedPrice()
-            binding.itemDetails.text = expense.itemDescription
+            binding.expenseName.text = expense.name
+            binding.expenseSum.text = expense.getFormattedPrice()
+            binding.expenseDetails.text = expense.description
         }
     }
 
@@ -47,7 +47,7 @@ class ItemListAdapter(private val onItemClicked: (Expense) -> Unit) :
             }
 
             override fun areContentsTheSame(oldExpense: Expense, newExpense: Expense): Boolean {
-                return oldExpense.itemName == newExpense.itemName
+                return oldExpense.name == newExpense.name
             }
         }
     }

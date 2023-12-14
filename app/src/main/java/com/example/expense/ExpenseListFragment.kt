@@ -8,16 +8,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.expense.databinding.ItemListFragmentBinding
+import com.example.expense.databinding.ExpenseListFragmentBinding
 
-class ItemListFragment : Fragment() {
+class ExpenseListFragment : Fragment() {
     private val viewModel: ExpenseDiaryViewModel by activityViewModels {
         ExpenseViewModelFactory(
             (activity?.application as ExpenseDiaryApplication).database.expenseDao()
         )
     }
 
-    private var _binding: ItemListFragmentBinding? = null
+    private var _binding: ExpenseListFragmentBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -25,16 +25,16 @@ class ItemListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = ItemListFragmentBinding.inflate(inflater, container, false)
+        _binding = ExpenseListFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ItemListAdapter {
+        val adapter = ExpenseListAdapter {
             val action =
-                ItemListFragmentDirections.actionItemListFragmentToItemDetailFragment(it.id)
+                ExpenseListFragmentDirections.actionItemListFragmentToItemDetailFragment(it.id)
             this.findNavController().navigate(action)
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
@@ -46,7 +46,7 @@ class ItemListFragment : Fragment() {
         }
 
         binding.floatingActionButton.setOnClickListener {
-            val action = ItemListFragmentDirections.actionItemListFragmentToAddItemFragment(
+            val action = ExpenseListFragmentDirections.actionItemListFragmentToAddItemFragment(
                 getString(R.string.add_fragment_title)
             )
             this.findNavController().navigate(action)

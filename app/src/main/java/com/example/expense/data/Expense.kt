@@ -10,11 +10,11 @@ data class Expense(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     @ColumnInfo(name = "name")
-    val Name: String,
+    val name: String,
     @ColumnInfo(name = "sum")
-    val Sum: Double,
+    val sum: Double,
     @ColumnInfo(name = "description")
-    val Description: String,
+    val description: String,
 )
 fun Expense.getFormattedPrice(): String =
-    NumberFormat.getCurrencyInstance().format(Sum)
+    NumberFormat.getCurrencyInstance().format(sum)

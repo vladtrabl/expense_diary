@@ -59,9 +59,9 @@ class ExpenseDiaryViewModel(private val expenseDao: ExpenseDao) : ViewModel() {
 
     private fun getNewItemEntry(expenseName: String, expensePrice: String, expenseCount: String): Expense {
         return Expense(
-            Name = expenseName,
-            Sum = expensePrice.toDouble(),
-            Description = expenseCount
+            name = expenseName,
+            sum = expensePrice.toDouble(),
+            description = expenseCount
         )
     }
 
@@ -73,9 +73,9 @@ class ExpenseDiaryViewModel(private val expenseDao: ExpenseDao) : ViewModel() {
     ): Expense {
         return Expense(
             id = expenseId,
-            Name = expenseName,
-            Sum = expensePrice.toDouble(),
-            Description = expenseCount
+            name = expenseName,
+            sum = expensePrice.toDouble(),
+            description = expenseCount
         )
     }
 }
