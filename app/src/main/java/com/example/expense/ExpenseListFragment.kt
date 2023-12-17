@@ -16,7 +16,7 @@ class ExpenseListFragment : Fragment() {
             (activity?.application as ExpenseDiaryApplication).database.expenseDao()
         )
     }
-
+    private var currencySymbol: String = ""
     private var _binding: ExpenseListFragmentBinding? = null
     private val binding get() = _binding!!
 
@@ -26,6 +26,7 @@ class ExpenseListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = ExpenseListFragmentBinding.inflate(inflater, container, false)
+        currencySymbol = getString(R.string.currency_symbol)
         return binding.root
     }
 
@@ -39,9 +40,23 @@ class ExpenseListFragment : Fragment() {
         }
         binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
         binding.recyclerView.adapter = adapter
-        viewModel.allItems.observe(this.viewLifecycleOwner) { items ->
+        viewModel.allExpenses.observe(this.viewLifecycleOwner) { items ->
             items.let {
                 adapter.submitList(it)
+            }
+        }
+
+        viewModel.daySum.observe(this.viewLifecycleOwner) { sum ->
+            sum.let {
+                binding.expenseTotalDay.text = getString(
+                    R.string.total_sum_day, (currencySymbol + it.toString()))
+            }
+        }
+
+        viewModel.monthSum.observe(this.viewLifecycleOwner) { sum ->
+            sum.let {
+                binding.expenseTotalMonth.text = getString(
+                    R.string.total_sum_month, (currencySymbol + it.toString()))
             }
         }
 

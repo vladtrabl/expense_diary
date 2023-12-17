@@ -40,6 +40,7 @@ class ExpenseDetailFragment : Fragment() {
             expenseName.text = expense.name
             expenseSum.text = expense.getFormattedPrice()
             expenseDescription.text = expense.description
+            expenseCreatedAt.text = expense.created
             deleteExpense.setOnClickListener { showConfirmationDialog() }
             editExpense.setOnClickListener { editItem() }
         }

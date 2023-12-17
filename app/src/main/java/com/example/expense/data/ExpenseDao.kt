@@ -11,8 +11,11 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ExpenseDao {
 
-    @Query("SELECT * from expense ORDER BY name ASC")
+    @Query("SELECT * from expense ORDER BY id ASC")
     fun getItems(): Flow<List<Expense>>
+
+    @Query("SELECT SUM(sum) from expense WHERE created LIKE :date")
+    fun getByDate(date: String): Flow<Double>
 
     @Query("SELECT * from expense WHERE id = :id")
     fun getExpense(id: Int): Flow<Expense>

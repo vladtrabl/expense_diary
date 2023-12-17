@@ -36,7 +36,7 @@ class ExpenseListAdapter(private val onItemClicked: (Expense) -> Unit) :
         fun bind(expense: Expense) {
             binding.expenseName.text = expense.name
             binding.expenseSum.text = expense.getFormattedPrice()
-            binding.expenseDetails.text = expense.description
+            binding.expenseCreatedAt.text = expense.created
         }
     }
 

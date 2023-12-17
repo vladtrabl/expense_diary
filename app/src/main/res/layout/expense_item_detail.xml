@@ -10,8 +10,10 @@
 
     <TextView
         android:id="@+id/expense_name"
-        style="@style/Widget.ExpenseDiary.TextView"
+        style="@style/Widget.ExpenseDiary.Header"
         android:layout_width="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Coffee" />
@@ -21,6 +23,8 @@
         style="@style/Widget.ExpenseDiary.TextView"
         android:layout_width="wrap_content"
         android:layout_marginTop="@dimen/margin"
+        android:textStyle="bold"
+        android:textColor="@color/green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/expense_name"
         tools:text="$1.99" />
@@ -30,6 +34,7 @@
         style="@style/Widget.ExpenseDiary.TextView"
         android:layout_width="wrap_content"
         android:text="@string/description"
+        android:textColor="@color/grey"
         app:layout_constraintBaseline_toBaselineOf="@+id/expense_description"
         app:layout_constraintEnd_toStartOf="@+id/expense_description"
         app:layout_constraintHorizontal_bias="0.5"
@@ -39,12 +44,36 @@
         android:id="@+id/expense_description"
         style="@style/Widget.ExpenseDiary.TextView"
         android:layout_width="0dp"
+        android:textColor="@color/colorSecondaryVariant"
         android:layout_marginStart="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/expense_description_label"
         app:layout_constraintTop_toBottomOf="@+id/expense_sum"
         tools:text="Morning routine" />
+
+    <TextView
+        android:id="@+id/expense_created_at_label"
+        style="@style/Widget.ExpenseDiary.TextView"
+        android:layout_width="wrap_content"
+        android:text="@string/created_at"
+        android:textColor="@color/grey"
+        app:layout_constraintBaseline_toBaselineOf="@+id/expense_created_at"
+        app:layout_constraintEnd_toStartOf="@+id/expense_created_at"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/expense_created_at"
+        style="@style/Widget.ExpenseDiary.TextView"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin"
+        android:textColor="@color/colorSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/expense_created_at_label"
+        app:layout_constraintTop_toBottomOf="@+id/expense_description"
+        tools:text="01.01.2023 00:00" />
 
     <Button
         android:id="@+id/delete_expense"
@@ -56,7 +85,7 @@
         android:textColor="@color/red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expense_description" />
+        app:layout_constraintTop_toBottomOf="@+id/expense_created_at" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/edit_expense"

@@ -20,8 +20,8 @@
     <fragment
         android:id="@+id/expenseDetailFragment"
         android:name="com.example.expense.ExpenseDetailFragment"
-        android:label="@string/item_detail_fragment_title"
-        tools:layout="@layout/expense_detail">
+        android:label="@string/expense_detail_title"
+        tools:layout="@layout/expense_item_detail">
         <argument
             android:name="item_id"
             app:argType="integer" />

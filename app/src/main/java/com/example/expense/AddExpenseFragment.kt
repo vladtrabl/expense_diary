@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.expense.data.Expense
 import com.example.expense.databinding.FragmentAddItemBinding
+import java.util.Calendar
 
 class AddExpenseFragment : Fragment() {
 
@@ -70,11 +71,19 @@ class AddExpenseFragment : Fragment() {
 
     private fun updateItem() {
         if (isEntryValid()) {
+            val calender: Calendar = Calendar.getInstance()
+            val year = calender.get(Calendar.YEAR)
+            val month = calender.get(Calendar.MONTH) + 1
+            val day = calender.get(Calendar.DAY_OF_MONTH)
+            val hour = calender.get(Calendar.HOUR_OF_DAY)
+            val minute = calender.get(Calendar.MINUTE)
+
             viewModel.updateItem(
                 this.navigationArgs.itemId,
                 this.binding.expenseName.text.toString(),
                 this.binding.expenseSum.text.toString(),
-                this.binding.expenseDescription.text.toString()
+                this.binding.expenseDescription.text.toString(),
+                "$day.$month.$year $hour:$minute"
             )
             val action = AddExpenseFragmentDirections.actionAddItemFragmentToItemListFragment()
             findNavController().navigate(action)

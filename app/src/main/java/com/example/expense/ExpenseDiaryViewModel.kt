@@ -8,18 +8,27 @@ import androidx.lifecycle.viewModelScope
 import com.example.expense.data.Expense
 import com.example.expense.data.ExpenseDao
 import kotlinx.coroutines.launch
+import java.util.Calendar
 
 class ExpenseDiaryViewModel(private val expenseDao: ExpenseDao) : ViewModel() {
 
-    val allItems: LiveData<List<Expense>> = expenseDao.getItems().asLiveData()
+    private val calender: Calendar = Calendar.getInstance()
+    private val year = calender.get(Calendar.YEAR)
+    private val month = calender.get(Calendar.MONTH) + 1
+    private val day = calender.get(Calendar.DAY_OF_MONTH)
+
+    val allExpenses: LiveData<List<Expense>> = expenseDao.getItems().asLiveData()
+    val daySum: LiveData<Double> = expenseDao.getByDate("%$day.$month.$year%").asLiveData()
+    val monthSum: LiveData<Double> = expenseDao.getByDate("%$month.$year%").asLiveData()
 
     fun updateItem(
-        itemId: Int,
-        itemName: String,
-        itemPrice: String,
-        itemCount: String
+        id: Int,
+        name: String,
+        price: String,
+        count: String,
+        date: String
     ) {
-        val updatedItem = getUpdatedItemEntry(itemId, itemName, itemPrice, itemCount)
+        val updatedItem = getUpdatedExpenseEntry(id, name, price, count, date)
         updateItem(updatedItem)
     }
 
@@ -30,11 +39,11 @@ class ExpenseDiaryViewModel(private val expenseDao: ExpenseDao) : ViewModel() {
     }
 
     fun addNewItem(itemName: String, itemPrice: String, itemCount: String) {
-        val newItem = getNewItemEntry(itemName, itemPrice, itemCount)
-        insertItem(newItem)
+        val newExpense = getNewExpenseEntry(itemName, itemPrice, itemCount)
+        insertExpense(newExpense)
     }
 
-    private fun insertItem(expense: Expense) {
+    private fun insertExpense(expense: Expense) {
         viewModelScope.launch {
             expenseDao.insert(expense)
         }
@@ -57,25 +66,36 @@ class ExpenseDiaryViewModel(private val expenseDao: ExpenseDao) : ViewModel() {
         return true
     }
 
-    private fun getNewItemEntry(expenseName: String, expensePrice: String, expenseCount: String): Expense {
+    private fun getNewExpenseEntry(expenseName: String, expensePrice: String, expenseCount: String): Expense {
+        val calender: Calendar = Calendar.getInstance()
+        val year = calender.get(Calendar.YEAR)
+        val month = calender.get(Calendar.MONTH) + 1
+        val day = calender.get(Calendar.DAY_OF_MONTH)
+        val hour = calender.get(Calendar.HOUR_OF_DAY)
+        val minute = calender.get(Calendar.MINUTE)
         return Expense(
             name = expenseName,
             sum = expensePrice.toDouble(),
-            description = expenseCount
+            description = expenseCount,
+            created = "$day.$month.$year $hour:$minute"
         )
     }
 
-    private fun getUpdatedItemEntry(
+    private fun getUpdatedExpenseEntry(
         expenseId: Int,
         expenseName: String,
         expensePrice: String,
-        expenseCount: String
+        expenseCount: String,
+        expenseDate: String
     ): Expense {
+
+
         return Expense(
             id = expenseId,
             name = expenseName,
             sum = expensePrice.toDouble(),
-            description = expenseCount
+            description = expenseCount,
+            created = expenseDate
         )
     }
 }

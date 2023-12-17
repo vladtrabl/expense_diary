@@ -1,21 +1,24 @@
 <resources>
     <string name="app_name">Expense diary</string>
-    <string name="description">Details:</string>
-    <string name="description_req">Details <font color='#FF0000'>*</font></string>
-    <string name="item_name_req">Name <font color='#FF0000'>*</font></string>
-    <string name="item_sum_req">Sum <font color='#FF0000'>*</font></string>
-    <string name="save_action">Save</string>
-    <string name="item_detail_fragment_title">Item Details</string>
-    <string name="add_fragment_title">Add Item</string>
-    <string name="edit_fragment_title">Edit Item</string>
-    <string name="sum">Sum</string>
-    <string name="description_title">Details</string>
-    <string name="item">Item</string>
-    <string name="delete">Delete</string>
-    <string name="delete_question">Are you sure you want to delete?</string>
-    <string name="no">No</string>
-    <string name="yes">Yes</string>
-    <string name="currency_symbol">$</string>
-    <string name="edit_item">Edit Item</string>
-    <string name="add_new_item">Add new item</string>
+    <string name="description">Опис:</string>
+    <string name="created_at">Дата створення:</string>
+    <string name="description_req">Опис <font color='#FF0000'>*</font></string>
+    <string name="item_name_req">Назва <font color='#FF0000'>*</font></string>
+    <string name="item_sum_req">Сума <font color='#FF0000'>*</font></string>
+    <string name="save_action">Зберегти</string>
+    <string name="expense_detail_title">Деталі</string>
+    <string name="add_fragment_title">Додати</string>
+    <string name="edit_fragment_title">Редагувати</string>
+    <string name="sum">Сума</string>
+    <string name="description_title">Опис</string>
+    <string name="expense_name">Назва</string>
+    <string name="delete">Видалити</string>
+    <string name="delete_question">Ви дійсно бажаєте видалити дарні про витрату?</string>
+    <string name="no">Ні</string>
+    <string name="yes">Так</string>
+    <string name="currency_symbol">₴</string>
+    <string name="edit_item">Редагувати</string>
+    <string name="add_new_item">Додати</string>
+    <string name="total_sum_day"><b>За день: </b> %1$s</string>
+    <string name="total_sum_month"><b>За місяць: </b> %1$s</string>
 </resources>

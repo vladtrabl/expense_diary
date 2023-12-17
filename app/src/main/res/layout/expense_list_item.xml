@@ -51,7 +51,7 @@
                 tools:text="$1.99" />
 
             <TextView
-                android:id="@+id/expense_details"
+                android:id="@+id/expense_created_at"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_small"
@@ -61,7 +61,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/expense_name"
-                tools:text="Morning routine" />
+                tools:text="01.01.2023 00:00" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
