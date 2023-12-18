@@ -21,7 +21,7 @@ class ExpenseDiaryViewModel(private val expenseDao: ExpenseDao) : ViewModel() {
     val daySum: LiveData<Double> = expenseDao.getByDate("%$day.$month.$year%").asLiveData()
     val monthSum: LiveData<Double> = expenseDao.getByDate("%$month.$year%").asLiveData()
 
-    fun updateItem(
+    fun updateExpense(
         id: Int,
         name: String,
         price: String,
@@ -29,16 +29,16 @@ class ExpenseDiaryViewModel(private val expenseDao: ExpenseDao) : ViewModel() {
         date: String
     ) {
         val updatedItem = getUpdatedExpenseEntry(id, name, price, count, date)
-        updateItem(updatedItem)
+        updateExpense(updatedItem)
     }
 
-    private fun updateItem(expense: Expense) {
+    private fun updateExpense(expense: Expense) {
         viewModelScope.launch {
             expenseDao.update(expense)
         }
     }
 
-    fun addNewItem(itemName: String, itemPrice: String, itemCount: String) {
+    fun addNewExpense(itemName: String, itemPrice: String, itemCount: String) {
         val newExpense = getNewExpenseEntry(itemName, itemPrice, itemCount)
         insertExpense(newExpense)
     }
@@ -49,13 +49,13 @@ class ExpenseDiaryViewModel(private val expenseDao: ExpenseDao) : ViewModel() {
         }
     }
 
-    fun deleteItem(expense: Expense) {
+    fun deleteExpense(expense: Expense) {
         viewModelScope.launch {
             expenseDao.delete(expense)
         }
     }
 
-    fun retrieveItem(id: Int): LiveData<Expense> {
+    fun retrieveExpense(id: Int): LiveData<Expense> {
         return expenseDao.getExpense(id).asLiveData()
     }
 

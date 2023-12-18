@@ -59,7 +59,7 @@ class AddExpenseFragment : Fragment() {
 
     private fun addNewItem() {
         if (isEntryValid()) {
-            viewModel.addNewItem(
+            viewModel.addNewExpense(
                 binding.expenseName.text.toString(),
                 binding.expenseSum.text.toString(),
                 binding.expenseDescription.text.toString(),
@@ -78,7 +78,7 @@ class AddExpenseFragment : Fragment() {
             val hour = calender.get(Calendar.HOUR_OF_DAY)
             val minute = calender.get(Calendar.MINUTE)
 
-            viewModel.updateItem(
+            viewModel.updateExpense(
                 this.navigationArgs.itemId,
                 this.binding.expenseName.text.toString(),
                 this.binding.expenseSum.text.toString(),
@@ -95,7 +95,7 @@ class AddExpenseFragment : Fragment() {
 
         val id = navigationArgs.itemId
         if (id > 0) {
-            viewModel.retrieveItem(id).observe(this.viewLifecycleOwner) { selectedItem ->
+            viewModel.retrieveExpense(id).observe(this.viewLifecycleOwner) { selectedItem ->
                 expense = selectedItem
                 bind(expense)
             }

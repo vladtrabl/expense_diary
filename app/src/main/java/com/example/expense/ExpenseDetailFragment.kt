@@ -67,14 +67,14 @@ class ExpenseDetailFragment : Fragment() {
     }
 
     private fun deleteItem() {
-        viewModel.deleteItem(expense)
+        viewModel.deleteExpense(expense)
         findNavController().navigateUp()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val id = navigationArgs.itemId
-        viewModel.retrieveItem(id).observe(this.viewLifecycleOwner) { selectedItem ->
+        viewModel.retrieveExpense(id).observe(this.viewLifecycleOwner) { selectedItem ->
             expense = selectedItem
             bind(expense)
         }

@@ -18,5 +18,6 @@ data class Expense(
     @ColumnInfo(name = "created")
     val created: String,
 )
+
 fun Expense.getFormattedPrice(): String =
     NumberFormat.getCurrencyInstance().format(sum)
