@@ -13,7 +13,7 @@
     <string name="description_title">Опис</string>
     <string name="expense_name">Назва</string>
     <string name="delete">Видалити</string>
-    <string name="delete_question">Ви дійсно бажаєте видалити дарні про витрату?</string>
+    <string name="delete_question">Ви дійсно бажаєте видалити дані про цю витрату?</string>
     <string name="no">Ні</string>
     <string name="yes">Так</string>
     <string name="currency_symbol">₴</string>

@@ -49,21 +49,22 @@ class ExpenseListFragment : Fragment() {
         viewModel.daySum.observe(this.viewLifecycleOwner) { sum ->
             sum.let {
                 binding.expenseTotalDay.text = getString(
-                    R.string.total_sum_day, (currencySymbol + it.toString()))
+                    R.string.total_sum_day, (currencySymbol + it.toString())
+                )
             }
         }
 
         viewModel.monthSum.observe(this.viewLifecycleOwner) { sum ->
             sum.let {
                 binding.expenseTotalMonth.text = getString(
-                    R.string.total_sum_month, (currencySymbol + it.toString()))
+                    R.string.total_sum_month, (currencySymbol + it.toString())
+                )
             }
         }
 
         binding.floatingActionButton.setOnClickListener {
-            val action = ExpenseListFragmentDirections.actionItemListFragmentToAddItemFragment(
-                getString(R.string.add_fragment_title)
-            )
+            val action = ExpenseListFragmentDirections
+                .actionItemListFragmentToAddItemFragment(getString(R.string.add_fragment_title))
             this.findNavController().navigate(action)
         }
     }
