@@ -17,6 +17,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         setupActionBarWithNavController(this, navController)
+        ReminderUtils.setReminder(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Move cancel the reminder to settings fragment in future
+        ReminderUtils.cancelReminder(this)
     }
 
     override fun onSupportNavigateUp(): Boolean {

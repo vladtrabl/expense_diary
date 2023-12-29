@@ -21,4 +21,5 @@
     <string name="add_new_item">Додати</string>
     <string name="total_sum_day"><b>За день: </b> %1$s</string>
     <string name="total_sum_month"><b>За місяць: </b> %1$s</string>
+    <string name="notification_id">expense_app_notification</string>
 </resources>
